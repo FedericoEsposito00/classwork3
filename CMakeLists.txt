@@ -156,11 +156,11 @@ target_link_libraries(LowPassFilter
    ${catkin_LIBRARIES}
 )
 
-add_executable(subscriber src/subscriber.cpp)
+# add_executable(subscriber src/subscriber.cpp)
 
-target_link_libraries(subscriber
-   ${catkin_LIBRARIES}
-)
+# target_link_libraries(subscriber
+#   ${catkin_LIBRARIES}
+#)
 
 
 #############

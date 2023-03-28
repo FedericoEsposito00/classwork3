@@ -29,7 +29,7 @@ SIN_ELAB::SIN_ELAB(): _rate(10) {
 	_currValue = 0;
 	_input = 0;
 	_K = 1;
-	_T = 1;
+	_T = 5;
 	_Ts = 0.1;
 	_topic_sub = _nh.subscribe("/sin_wave", 1, &SIN_ELAB::saveData, this);
 	_topic_pub = _nh.advertise<std_msgs::Float32>("/filtered_numbers", 1);
