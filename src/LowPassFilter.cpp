@@ -11,7 +11,7 @@ class SIN_ELAB {
 		SIN_ELAB();
 		void filter();
 		float getValue() {return _currValue;}
-		void startFilter();
+		//void startFilter();
 		void saveData(classwork3::sin_msg::ConstPtr msg);
 	private:
 		float _currValue;
@@ -33,6 +33,7 @@ SIN_ELAB::SIN_ELAB(): _rate(10) {
 	_Ts = 0.1;
 	_topic_sub = _nh.subscribe("/sin_wave", 1, &SIN_ELAB::saveData, this);
 	_topic_pub = _nh.advertise<std_msgs::Float32>("/filtered_numbers", 1);
+	boost::thread(&SIN_ELAB::filter, this);
 }
 
 //Callback function: the input of the function is the data to read
@@ -53,10 +54,6 @@ void SIN_ELAB::filter() {
 	
 }
 
-void SIN_ELAB::startFilter() {
-	boost::thread(&SIN_ELAB::filter, this);
-}
-
 int main( int argc, char** argv ) {
 
 	//Init the ros node with ros_subscriber name
@@ -65,7 +62,7 @@ int main( int argc, char** argv ) {
 	//Create the ROS_SUB class object
 	SIN_ELAB elab;
 
-	elab.startFilter();
+	//elab.startFilter();
 	
 	/*while(ros::ok()) {
 		elab.saveData();
